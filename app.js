@@ -9,6 +9,7 @@ const getProducts = require("./helpers/getProducts");
 const placeOrder = require("./helpers/placeOrder");
 const verifyOrder = require("./helpers/verifyOrder");
 const addProducts = require("./helpers/addProducts");
+const getLatestProducts = require("./helpers/getLatestProducts")
 
 const PORT = 8080 || process.env.PORT;
 app.use(express.json());
@@ -40,6 +41,9 @@ app.post("/api/order", placeOrder);
 
 // **********************Order Validation ****************
 app.post("/api/order/validate", verifyOrder);
+
+// **********************Getting Latest Products**********************
+app.get("/api/latestproducts", getLatestProducts);
 
 // ************** Running the server ********************
 app.listen(PORT, () => {
