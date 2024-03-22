@@ -9,7 +9,8 @@ const getProducts = require("./helpers/getProducts");
 const placeOrder = require("./helpers/placeOrder");
 const verifyOrder = require("./helpers/verifyOrder");
 const addProducts = require("./helpers/addProducts");
-const getLatestProducts = require("./helpers/getLatestProducts")
+const getLatestProducts = require("./helpers/getLatestProducts");
+const deleteProduct = require("./helpers/deleteProduct");
 
 const PORT = 8080 || process.env.PORT;
 app.use(express.json());
@@ -28,7 +29,7 @@ app.post("/api/signup", signup);
 app.post("/api/login", login);
 
 // ************** Add Products API ********************
-app.get("/api/addproducts", addProducts)
+app.post("/api/addproducts", addProducts);
 
 // ******************Getting Products API******************
 app.get("/api/products", getProducts);
@@ -44,6 +45,9 @@ app.post("/api/order/validate", verifyOrder);
 
 // **********************Getting Latest Products**********************
 app.get("/api/latestproducts", getLatestProducts);
+
+// ^^^^^^^^^^^^^^^^^^^^^^Delete a product*****************************
+app.delete("/api/deleteproduct", deleteProduct);
 
 // ************** Running the server ********************
 app.listen(PORT, () => {

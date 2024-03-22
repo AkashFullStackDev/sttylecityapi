@@ -21,13 +21,16 @@ const getProducts = async (req, res) => {
   }
 
   const skip = (page - 1) * limit;
-
+  console.log(page)
   try {
+    const totalDocuments = await db.Products.countDocuments();
+    const remainingDocuments = totalDocuments - skip;
+    console.log(remainingDocuments);
     const products = await db.Products.find(name ? queryCategory : {})
       .skip(skip)
       .limit(limit);
 
-    if (products) {
+    if (products && skip<totalDocuments) {
       console.log("Data sent successfully!");
       res.status(200).json(products);
     } else {

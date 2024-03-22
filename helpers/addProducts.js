@@ -1,10 +1,20 @@
 const db = require("../models/index");
 
-const addProducts = (req, res) => {
-  db.Products.create(Products)
-    .then((products) => {
-      console.log(products);
-      res.status(200).json({ products_array: products });
+const addProducts = async (req, res) => {
+  const {name, category, subcategory, rating, price, image, description} = req.body
+  const product = {
+    name, 
+    category, 
+    subcategory, 
+    rating, 
+    price, 
+    image, 
+    description
+  }
+  await db.Products.create(product)
+    .then((response) => {
+      console.log(response);
+      res.status(200).json({ products: response });
     })
     .catch((error) => {
       console.log(error);
