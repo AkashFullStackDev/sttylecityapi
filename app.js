@@ -12,7 +12,7 @@ const addProducts = require("./helpers/addProducts");
 const getLatestProducts = require("./helpers/getLatestProducts");
 const deleteProduct = require("./helpers/deleteProduct");
 
-const PORT = 8080 || process.env.PORT;
+const PORT = process.env.PORT || 8080;
 app.use(express.json());
 app.use(cors({ origin: "*" }));
 
